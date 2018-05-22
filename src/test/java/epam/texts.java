@@ -6,6 +6,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
+// TODO this code do not match with code convention !
 public enum texts {
     link("https://jdi-framework.github.io/tests/index.htm"),
     linkIndex("Index Page"),

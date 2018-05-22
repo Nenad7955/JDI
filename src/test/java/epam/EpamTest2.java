@@ -9,12 +9,15 @@ import org.openqa.selenium.WebDriver;
 
 import java.util.concurrent.TimeUnit;
 
+// TODO this code do not match with code convention !
+// TODO same problem with tests count
 public class EpamTest2 {
 
     private WebDriver driver;
 
     @Before
     public void before(){
+        // TODO this should be specify via pom.xml
         System.setProperty("webdriver.chrome.driver", "C:\\Users\\nenad\\chromedriver.exe");
         this.driver = new ChromeDriver();
         this.driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);

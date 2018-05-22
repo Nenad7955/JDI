@@ -12,6 +12,11 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.concurrent.TimeUnit;
 
+// TODO tests count...
+// TODO have you ever heard about cycles ?
+// TODO the idea of PageObject is that wou should not find elements OUTSIDE of PO !
+// TODO this is completely essential do describe business layer properly (via PO) !
+// TODO same issue with 3_1
 public class EpamTest3 {
 
     private WebDriver driver;
@@ -60,6 +65,7 @@ public class EpamTest3 {
         Assert.assertTrue(work.homePage.subServices.findElement(By.cssSelector("ul.sub")).getText().contains("Different elements"));
     }
 
+    // TODO this is completely prohibited to naming tests in this way
     @Test
     public void DEP() {
         //openning Different Elements
