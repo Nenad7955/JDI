@@ -36,8 +36,8 @@ public class HomePage {
     WebElement mainText;
 
 
-    public HomePage(WebDriver driver) {
-        this.driver = driver;
+    public HomePage(WebDriver driver){
+        this.driver=driver;
     }
 
     public void login(String login, String password) {

@@ -2,7 +2,7 @@ package epam;
 
 public enum DIFFERENT_ELEMENTS_PAGE {
 
-    ACCCAT("Acccat", new String[]{"acccatid"}, "acccatText", "dlg7Matchcode", "Zutritts\nkategorie", "Text");
+    ACCCAT("Acccat", new String[] {"acccatid"}, "acccatText", "dlg7Matchcode", "Zutritts\nkategorie", "Text");
 
     String[] optionsArray = new String[]{
             "Service",

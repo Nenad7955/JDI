@@ -33,7 +33,7 @@ public class EpamTest3_1 {
 
         //0 - 100
 
-        actions().dragAndDropBy(dp.sliders.get(0).toWebElement(), -200, 0).perform();
+        actions().dragAndDropBy(dp.sliders.get(0).toWebElement(), -200,0).perform();
 
         dp.sliders.get(0).shouldHave(text("0"));
         dp.sliders.get(1).shouldHave(text("100"));
@@ -42,7 +42,7 @@ public class EpamTest3_1 {
 
         //0,0
 
-        actions().dragAndDropBy(dp.sliders.get(1).toWebElement(), -276, 0).perform();
+        actions().dragAndDropBy(dp.sliders.get(1).toWebElement(), -276,0).perform();
 
         dp.sliders.get(0).shouldHave(text("0"));
         dp.sliders.get(1).shouldHave(text("0"));
@@ -50,8 +50,8 @@ public class EpamTest3_1 {
         Selenide.sleep(3000);
 
         //100,100
-        actions().dragAndDropBy(dp.sliders.get(0).toWebElement(), 276, 0).perform();
-        actions().dragAndDropBy(dp.sliders.get(0).toWebElement(), 276, 0).perform();
+        actions().dragAndDropBy(dp.sliders.get(0).toWebElement(), 276,0).perform();
+        actions().dragAndDropBy(dp.sliders.get(0).toWebElement(), 276,0).perform();
 
         dp.sliders.get(0).shouldHave(text("100"));
         dp.sliders.get(1).shouldHave(text("100"));
