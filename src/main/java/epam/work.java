@@ -1,7 +1,6 @@
 package epam;
 
 
-import lombok.AllArgsConstructor;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,10 +8,10 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 
+import javax.security.auth.login.Configuration;
 import java.util.concurrent.TimeUnit;
 
 
-@AllArgsConstructor
 public class work {
 
     public static ChromeDriver driver;
@@ -20,7 +19,6 @@ public class work {
 
 
     public static void init(String webpage) {
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\nenad\\chromedriver.exe");
         driver = new ChromeDriver();
         //driver.get(webpage);
         driver.navigate().to(webpage);

@@ -1,19 +1,22 @@
 package epam;
 
+import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.SelenideElement;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
 
-import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.actions;
 
-import com.codeborne.selenide.Configuration;
 
 public class EpamTest3_1 {
 
+    static DifferentElementsPage dp;
+
     @Before
     public void before() {
-<<<<<<< HEAD
         com.codeborne.selenide.Configuration.browser = "chrome";
         dp = new DifferentElementsPage();
     }
@@ -33,7 +36,7 @@ public class EpamTest3_1 {
 
         //0 - 100
 
-        actions().dragAndDropBy(dp.sliders.get(0).toWebElement(), -200,0).perform();
+        actions().dragAndDropBy(dp.sliders.get(0).toWebElement(), -200, 0).perform();
 
         dp.sliders.get(0).shouldHave(text("0"));
         dp.sliders.get(1).shouldHave(text("100"));
@@ -42,7 +45,7 @@ public class EpamTest3_1 {
 
         //0,0
 
-        actions().dragAndDropBy(dp.sliders.get(1).toWebElement(), -276,0).perform();
+        actions().dragAndDropBy(dp.sliders.get(1).toWebElement(), -276, 0).perform();
 
         dp.sliders.get(0).shouldHave(text("0"));
         dp.sliders.get(1).shouldHave(text("0"));
@@ -50,8 +53,8 @@ public class EpamTest3_1 {
         Selenide.sleep(3000);
 
         //100,100
-        actions().dragAndDropBy(dp.sliders.get(0).toWebElement(), 276,0).perform();
-        actions().dragAndDropBy(dp.sliders.get(0).toWebElement(), 276,0).perform();
+        actions().dragAndDropBy(dp.sliders.get(0).toWebElement(), 276, 0).perform();
+        actions().dragAndDropBy(dp.sliders.get(0).toWebElement(), 276, 0).perform();
 
         dp.sliders.get(0).shouldHave(text("100"));
         dp.sliders.get(1).shouldHave(text("100"));
@@ -72,62 +75,37 @@ public class EpamTest3_1 {
         System.out.println($("div.info-panel-section").getText());
 
         /* Old Method... i still like it more! more then PO
-=======
-        // System.setProperty("webdriver.chrome.driver", "C:\\Users\\nenad\\chromedriver.exe");
-        Configuration.browser = "chrome";
-        open("https://jdi-framework.github.io/tests/");
->>>>>>> parent of 65d5a88... 30.05.2018
-
         $(".profile-photo").click();
-        $("#Login").sendKeys(texts.ID.value);
-        $("#Password").sendKeys((texts.password.value));
+        $("#Login").sendKeys(epam.HOME_PAGE_DATA.ID.value);
+        $("#Password").sendKeys((epam.HOME_PAGE_DATA.PASSWORD.value));
         $(".btn-login").click();
-    }
-
-    @Test
-    public void loggedIn() throws InterruptedException {
-        $("div.profile-photo").shouldHave(text(texts.userName.value));
+        $("div.profile-photo").shouldHave(text(epam.HOME_PAGE_DATA.USERNAME.value));
         $("li.sub-menu").click();
-        //$("ul.sub").find(By.linkText("Dates")).click();
-        //$("ul.sub").$(By.linkText("Dates")).click();
-
         //clicking on Dates(through xpath) through left menu
         $("ul.sub").$x("//*[@id='mCSB_1_container']/ul/li[3]/ul/li[2]/a/p/span").click();
-
         //0,100
         actions().dragAndDropBy($$(By.cssSelector(".ui-slider-handle")).get(0).toWebElement(), -200, 0).perform();
         actions().dragAndDropBy($$(By.cssSelector(".ui-slider-handle")).get(1).toWebElement(), -1, 0).perform();
-
         $$(By.cssSelector(".ui-slider-handle")).get(0).shouldHave(text("0"));
         $$(By.cssSelector(".ui-slider-handle")).get(1).shouldHave(text("100"));
-
         //0,0
         actions().dragAndDropBy($$(By.cssSelector(".ui-slider-handle")).get(0).toWebElement(), -1, 0).perform();
         actions().dragAndDropBy($$(By.cssSelector(".ui-slider-handle")).get(1).toWebElement(), -276, 0).perform();
-
-
         $$(By.cssSelector(".ui-slider-handle")).get(0).shouldHave(text("0"));
         $$(By.cssSelector(".ui-slider-handle")).get(1).shouldHave(text("0"));
-
         //100,100
         actions().dragAndDropBy($$(By.cssSelector(".ui-slider-handle")).get(0).toWebElement(), 275, 0).perform();
         actions().dragAndDropBy($$(By.cssSelector(".ui-slider-handle")).get(0).toWebElement(), 275, 0).perform();
-
         $$(By.cssSelector(".ui-slider-handle")).get(0).shouldHave(text("100"));
         $$(By.cssSelector(".ui-slider-handle")).get(1).shouldHave(text("100"));
-
         //30,70
-
         actions().dragAndDropBy($$(By.cssSelector(".ui-slider-handle")).get(1).toWebElement(), -196, 0).perform();
         actions().dragAndDropBy($$(By.cssSelector(".ui-slider-handle")).get(0).toWebElement(), 0, 0).perform();
         actions().dragAndDropBy($$(By.cssSelector(".ui-slider-handle")).get(1).toWebElement(), -85, 0).perform();
-
         $$(By.cssSelector(".ui-slider-handle")).get(0).shouldHave(text("30"));
         $$(By.cssSelector(".ui-slider-handle")).get(1).shouldHave(text("70"));
-
         System.out.println($("div.info-panel-section").getText());
-
-        System.out.println("--------------------");
+        System.out.println("--------------------");*/
 
 
     }

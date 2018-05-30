@@ -1,109 +1,84 @@
 package epam;
 
-import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
+import static com.codeborne.selenide.CollectionCondition.size;
+import static com.codeborne.selenide.Condition.text;
 
-import java.util.concurrent.TimeUnit;
 
 public class EpamTest3 {
 
-    private WebDriver driver;
+    static DifferentElementsPage dp;
+
 
     @Before
     public void before() {
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\nenad\\chromedriver.exe");
-        this.driver = new ChromeDriver();
-        this.driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        this.driver.manage().window().maximize();
-        driver.navigate().to(texts.link.value);
-        work.initHP(this.driver);
-        work.homePage.login(texts.ID.value, texts.password.value);
-    }
-
-    @After
-    public void after() {
-        work.homePage.driver.close();
+        com.codeborne.selenide.Configuration.browser = "chrome";
+        dp = new DifferentElementsPage();
     }
 
     @Test
-    public void checkURL() {
-        Assert.assertEquals(work.homePage.driver.getCurrentUrl(), texts.link.value);
-    }
+    public void test() {
 
-    @Test
-    public void headerServicesContainTexts() {
-        work.homePage.hdrServices.click();
-        Assert.assertTrue(work.homePage.hdrServices.findElement(By.cssSelector("ul.dropdown-menu")).getText().contains("SUPPORT"));
-        // Assert.assertTrue(work.homePage.hdrServices2.getText().contains("SUPPORT"));
-        Assert.assertTrue(work.homePage.hdrServices.findElement(By.cssSelector("ul.dropdown-menu")).getText().contains("DATES"));
-        Assert.assertTrue(work.homePage.hdrServices.findElement(By.cssSelector("ul.dropdown-menu")).getText().contains("COMPLEX TABLE"));
-        Assert.assertTrue(work.homePage.hdrServices.findElement(By.cssSelector("ul.dropdown-menu")).getText().contains("SIMPLE TABLE"));
-        Assert.assertTrue(work.homePage.hdrServices.findElement(By.cssSelector("ul.dropdown-menu")).getText().contains("TABLE WITH PAGES"));
-        Assert.assertTrue(work.homePage.hdrServices.findElement(By.cssSelector("ul.dropdown-menu")).getText().contains("DIFFERENT ELEMENTS"));
-    }
+        //logging in
+        dp.profilePhoto.click();
+        dp.login.sendKeys("epam");
+        dp.password.sendKeys("1234");
+        dp.submit.click();
+        //checking username
+        dp.profilePhoto.shouldHave(text(epam.HOME_PAGE_DATA.USERNAME.value));
 
-    @Test
-    public void menuServicesContainTexts() {
-        work.homePage.subServices.click();
-        Assert.assertTrue(work.homePage.subServices.findElement(By.cssSelector("ul.sub")).getText().contains("Support"));
-        Assert.assertTrue(work.homePage.subServices.findElement(By.cssSelector("ul.sub")).getText().contains("Dates"));
-        Assert.assertTrue(work.homePage.subServices.findElement(By.cssSelector("ul.sub")).getText().contains("Complex Table"));
-        Assert.assertTrue(work.homePage.subServices.findElement(By.cssSelector("ul.sub")).getText().contains("Simple Table"));
-        Assert.assertTrue(work.homePage.subServices.findElement(By.cssSelector("ul.sub")).getText().contains("Table with pages"));
-        Assert.assertTrue(work.homePage.subServices.findElement(By.cssSelector("ul.sub")).getText().contains("Different elements"));
-    }
+        //checking number of texts and pictures
+        dp.images.shouldHave(size(4));
+        dp.texts.shouldHave(size(4));
 
-    @Test
-    public void DEP() {
-        //openning Different Elements
-        work.homePage.subServices.click();
-        work.homePage.subServices.findElement(By.cssSelector("ul.sub")).findElement(By.linkText("Different elements")).click();
-        Assert.assertEquals(work.homePage.driver.getTitle(), "Different Element");
+        dp.subServices.click();
+        //checking service subcategory
+        for (int i = 0; i < epam.DIFFERENT_ELEMENTS_PAGE.ACCCAT.optionsArray.length; i++)
+            dp.subServices.shouldHave(text(epam.DIFFERENT_ELEMENTS_PAGE.ACCCAT.optionsArray[i]));
 
-        //checking for checkbox, radio, dropdown and 2 buttons
-        Assert.assertEquals(work.homePage.driver.findElement(By.cssSelector("div.main-content-hg")).findElements(By.cssSelector("label.label-checkbox")).size(), 4);
-        Assert.assertEquals(work.homePage.driver.findElement(By.cssSelector("div.main-content-hg")).findElements(By.cssSelector("label.label-radio")).size(), 4);
-        Assert.assertTrue(work.homePage.driver.findElement(By.cssSelector("div.main-content-hg")).findElements(By.cssSelector("div.colors")).get(0).isDisplayed()); //dropdown
-        Assert.assertEquals(work.homePage.driver.findElement(By.cssSelector("div.main-content-hg")).findElements(By.cssSelector("button")).get(0).isDisplayed(), true);
-        Assert.assertEquals(work.homePage.driver.findElement(By.cssSelector("div.main-content-hg")).findElements(By.cssSelector("input")).get(0).isDisplayed(), true);
+        dp.hdrServices.click();
+        //checking service header
+        for (int i = 0; i < epam.DIFFERENT_ELEMENTS_PAGE.ACCCAT.optionsArray.length; i++)
+            dp.hdrServices.shouldHave(text(epam.DIFFERENT_ELEMENTS_PAGE.ACCCAT.optionsArray[i]));
 
-        //selecting water and wind
-        work.homePage.driver.findElement(By.cssSelector("div.main-content-hg")).findElements(By.cssSelector("label.label-checkbox")).get(0).click();
-        work.homePage.driver.findElement(By.cssSelector("div.main-content-hg")).findElements(By.cssSelector("label.label-checkbox")).get(2).click();
-        //checking if they are selected
-        Assert.assertTrue(work.homePage.driver.findElement(By.cssSelector("div.main-content-hg")).findElements(By.cssSelector("input")).get(0).isSelected());
-        Assert.assertTrue(work.homePage.driver.findElement(By.cssSelector("div.main-content-hg")).findElements(By.cssSelector("input")).get(2).isSelected());
+        //opening Different Elements page and checking for existence of elements and comparing values
 
-        //selecting selen and checking if selected
-        work.homePage.driver.findElement(By.cssSelector("div.main-content-hg")).findElements(By.cssSelector("label.label-radio")).get(3).click();
-        Assert.assertTrue(work.homePage.driver.findElement(By.cssSelector("div.main-content-hg")).findElements(By.cssSelector("input")).get(7).isSelected());
+        dp.differentElementPageButton.click();
 
-        //selecting yellow and checking if selected
-        Select color = new Select(work.homePage.driver.findElement(By.cssSelector("select.uui-form-element")));
-        color.selectByIndex(3);
-        Assert.assertEquals(color.getAllSelectedOptions().get(0).getText(), "Yellow");
+        dp.checkbox.shouldHave(size(4));
+        dp.radiobox.shouldHave(size(4));
+        dp.colors.shouldHave(size(1));
 
-        //checking in logs if all operations are done correctly
-        Assert.assertTrue(work.homePage.driver.findElement(By.cssSelector("ul.panel-body-list.logs")).getText().contains(change.waterChecked.value));
-        Assert.assertTrue(work.homePage.driver.findElement(By.cssSelector("ul.panel-body-list.logs")).getText().contains(change.windChecked.value));
-        Assert.assertTrue(work.homePage.driver.findElement(By.cssSelector("ul.panel-body-list.logs")).getText().contains(change.yellowChecked.value));
-        Assert.assertTrue(work.homePage.driver.findElement(By.cssSelector("ul.panel-body-list.logs")).getText().contains(change.selenChecked.value));
+        for (int i = 0; i < epam.DIFFERENT_ELEMENTS_PAGE.ACCCAT.elementArray.length; i++)
+            dp.checkbox.get(i).shouldHave(text(epam.DIFFERENT_ELEMENTS_PAGE.ACCCAT.elementArray[i]));
 
-        //uncheck water and wind
-        work.homePage.driver.findElement(By.cssSelector("div.main-content-hg")).findElements(By.cssSelector("label.label-checkbox")).get(0).click();
-        work.homePage.driver.findElement(By.cssSelector("div.main-content-hg")).findElements(By.cssSelector("label.label-checkbox")).get(2).click();
-        //checking if they are unselected
-        Assert.assertFalse(work.homePage.driver.findElement(By.cssSelector("div.main-content-hg")).findElements(By.cssSelector("input")).get(0).isSelected());
-        Assert.assertFalse(work.homePage.driver.findElement(By.cssSelector("div.main-content-hg")).findElements(By.cssSelector("input")).get(2).isSelected());
-        //checking again in logs
-        Assert.assertTrue(work.homePage.driver.findElement(By.cssSelector("ul.panel-body-list.logs")).getText().contains(change.waterUnchecked.value));
-        Assert.assertTrue(work.homePage.driver.findElement(By.cssSelector("ul.panel-body-list.logs")).getText().contains(change.windUnchecked.value));
+        for (int i = 0; i < epam.DIFFERENT_ELEMENTS_PAGE.ACCCAT.materialArray.length; i++)
+            dp.radiobox.get(i).shouldHave(text(epam.DIFFERENT_ELEMENTS_PAGE.ACCCAT.materialArray[i]));
+
+        for (int i = 0; i < epam.DIFFERENT_ELEMENTS_PAGE.ACCCAT.colorsArray.length; i++)
+            dp.colors.get(0).shouldHave(text(epam.DIFFERENT_ELEMENTS_PAGE.ACCCAT.colorsArray[i]));
+
+
+        //selecting Water, Wind, Selen and Yellow
+        dp.checkbox.get(0).click();
+        dp.checkbox.get(2).click();
+
+        dp.radiobox.get(3).click();
+
+        dp.yellow.click();
+
+        //checking in logs
+        for (int i = 0; i < epam.DIFFERENT_ELEMENTS_PAGE.ACCCAT.logsChecked.length; i++)
+            dp.logs.get(0).shouldHave(text(epam.DIFFERENT_ELEMENTS_PAGE.ACCCAT.logsChecked[i]));
+
+        //unselecting Water and Wind
+        dp.checkbox.get(0).click();
+        dp.checkbox.get(2).click();
+
+        //checking in logs
+        for (int i = 0; i < epam.DIFFERENT_ELEMENTS_PAGE.ACCCAT.logsUnchecked.length; i++)
+            dp.logs.get(0).shouldHave(text(epam.DIFFERENT_ELEMENTS_PAGE.ACCCAT.logsUnchecked[i]));
     }
 }
