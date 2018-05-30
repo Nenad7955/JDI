@@ -1,22 +1,19 @@
 package epam;
 
-import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.SelenideElement;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.By;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.actions;
+import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selenide.*;
 
+import com.codeborne.selenide.Configuration;
 
 public class EpamTest3_1 {
 
-    static DifferentElementsPage dp;
-
     @Before
     public void before() {
+<<<<<<< HEAD
         com.codeborne.selenide.Configuration.browser = "chrome";
         dp = new DifferentElementsPage();
     }
@@ -75,15 +72,24 @@ public class EpamTest3_1 {
         System.out.println($("div.info-panel-section").getText());
 
         /* Old Method... i still like it more! more then PO
+=======
+        // System.setProperty("webdriver.chrome.driver", "C:\\Users\\nenad\\chromedriver.exe");
+        Configuration.browser = "chrome";
+        open("https://jdi-framework.github.io/tests/");
+>>>>>>> parent of 65d5a88... 30.05.2018
 
         $(".profile-photo").click();
-        $("#Login").sendKeys(epam.HOME_PAGE_DATA.ID.value);
-        $("#Password").sendKeys((epam.HOME_PAGE_DATA.PASSWORD.value));
+        $("#Login").sendKeys(texts.ID.value);
+        $("#Password").sendKeys((texts.password.value));
         $(".btn-login").click();
+    }
 
-
-        $("div.profile-photo").shouldHave(text(epam.HOME_PAGE_DATA.USERNAME.value));
+    @Test
+    public void loggedIn() throws InterruptedException {
+        $("div.profile-photo").shouldHave(text(texts.userName.value));
         $("li.sub-menu").click();
+        //$("ul.sub").find(By.linkText("Dates")).click();
+        //$("ul.sub").$(By.linkText("Dates")).click();
 
         //clicking on Dates(through xpath) through left menu
         $("ul.sub").$x("//*[@id='mCSB_1_container']/ul/li[3]/ul/li[2]/a/p/span").click();
@@ -121,7 +127,7 @@ public class EpamTest3_1 {
 
         System.out.println($("div.info-panel-section").getText());
 
-        System.out.println("--------------------");*/
+        System.out.println("--------------------");
 
 
     }

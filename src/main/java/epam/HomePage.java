@@ -1,7 +1,5 @@
 package epam;
 
-import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.Selenide;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -12,7 +10,6 @@ import java.util.List;
 public class HomePage {
 
     public WebDriver driver;
-
 
     @FindBy(css = ".profile-photo")
     WebElement profilePhoto;
@@ -38,39 +35,10 @@ public class HomePage {
     @FindBy(css = ".main-txt")
     WebElement mainText;
 
-    /* ******************************************************************************************** */
-
-    @FindBy(css = "li.dropdown")
-    WebElement hdrServices;
-
-    @FindBy(css = "ul.dropdown-menu")
-    WebElement hdrServices2;
-
-    @FindBy(css = "ul.sub")
-    WebElement subMenu;
-
-    @FindBy(css = "li.sub-menu")
-    WebElement subServices;
-
-    @FindBy(css = "label")
-    ElementsCollection checkbox;
-
-    @FindBy(css = "label-radio")
-    ElementsCollection radiobox;
-
-    @FindBy(css = "div.colors")
-    ElementsCollection colors;
-
-    @FindBy(css = "ul.panel-body-list.logs")
-    ElementsCollection logs;
-
-    @FindBy(css = "uui-button")
-    ElementsCollection buttons;
 
     public HomePage(WebDriver driver) {
         this.driver = driver;
     }
-
 
     public void login(String login, String password) {
         profilePhoto.click();
@@ -78,4 +46,15 @@ public class HomePage {
         passwordField.sendKeys(password);
         submit.click();
     }
+
+    /* ******************************************************************************************** */
+
+    @FindBy(css = "li.dropdown")
+    WebElement hdrServices;
+    @FindBy(css = "ul.dropdown-menu")
+    WebElement hdrServices2;
+
+    @FindBy(css = "li.sub-menu")
+    WebElement subServices;
+
 }

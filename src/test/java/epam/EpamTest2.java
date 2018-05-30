@@ -4,58 +4,67 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.WebDriver;
 
 import java.util.concurrent.TimeUnit;
 
-// TODO this code do not match with code convention !
-// TODO same problem with tests count
 public class EpamTest2 {
 
     private WebDriver driver;
 
     @Before
-    public void before() {
-        // System.setProperty("webdriver.chrome.driver", c);
+    public void before(){
+        System.setProperty("webdriver.chrome.driver", "C:\\Users\\nenad\\chromedriver.exe");
         this.driver = new ChromeDriver();
         this.driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         this.driver.manage().window().maximize();
-        driver.navigate().to(epam.HOME_PAGE_DATA.URL.value);
+        driver.navigate().to(texts.link.value);
         work.initHP(this.driver);
-        work.homePage.login(epam.HOME_PAGE_DATA.ID.value, epam.HOME_PAGE_DATA.PASSWORD.value);
+        work.homePage.login(texts.ID.value, texts.password.value);
     }
 
     @After
-    public void after() {
+    public void  after(){
         work.homePage.driver.close();
     }
 
     @Test
-    public void test() {
-        //checking if URL is correct
-        Assert.assertEquals(work.homePage.driver.getCurrentUrl(), epam.HOME_PAGE_DATA.URL.value);
-        //checking username
-        Assert.assertEquals(work.homePage.profilePhoto.getAttribute("innerText"), " " + epam.HOME_PAGE_DATA.USERNAME.value);
-        //checking title / index
-        Assert.assertEquals(work.homePage.driver.getTitle(), epam.HOME_PAGE_DATA.LINKINDEX.value);
-        //checking number of pictures
-        Assert.assertEquals(work.homePage.images.size(), 4);
-        //checking if all 4 pictures are dispayed
+    public void checkURL(){
+        Assert.assertEquals(work.homePage.driver.getCurrentUrl(), texts.link.value);
+    }
+
+    @Test
+    public void userName(){
+        Assert.assertEquals(work.homePage.profilePhoto.getAttribute("innerText")," " + texts.userName.value);
+    }
+
+    @Test
+    public void title(){
+        Assert.assertEquals(work.homePage.driver.getTitle(), texts.linkIndex.value);
+    }
+
+    @Test
+    public void images(){
+        Assert.assertEquals(work.homePage.images.size(),4);
+
         Assert.assertTrue(work.homePage.images.get(0).isDisplayed());
         Assert.assertTrue(work.homePage.images.get(1).isDisplayed());
         Assert.assertTrue(work.homePage.images.get(2).isDisplayed());
         Assert.assertTrue(work.homePage.images.get(3).isDisplayed());
-        //checking number of texts
-        Assert.assertEquals(work.homePage.images.size(), 4);
-        //comparing all 4 texts
-        Assert.assertEquals(work.homePage.texts.get(0).getText(), epam.HOME_PAGE_DATA.FIRSTTEXT.value);
-        Assert.assertEquals(work.homePage.texts.get(1).getText(), epam.HOME_PAGE_DATA.SECONDTEXT.value);
-        Assert.assertEquals(work.homePage.texts.get(2).getText(), epam.HOME_PAGE_DATA.THIRDTEXT.value);
-        Assert.assertEquals(work.homePage.texts.get(3).getText(), epam.HOME_PAGE_DATA.FOURTHTEXT.value);
-        //checking header and the weird long text
-        Assert.assertEquals(work.homePage.mainText.getText(), epam.HOME_PAGE_DATA.WEIRD.value);
-        Assert.assertEquals(work.homePage.mainTitle.getText(), epam.HOME_PAGE_DATA.FRAMEWORK.value);
+    }
+
+    @Test
+    public void texts(){
+        Assert.assertEquals(work.homePage.texts.size(),4);
+
+        Assert.assertEquals(work.homePage.texts.get(0).getText(), texts.first.value);
+        Assert.assertEquals(work.homePage.texts.get(1).getText(), texts.second.value);
+        Assert.assertEquals(work.homePage.texts.get(2).getText(), texts.third.value);
+        Assert.assertEquals(work.homePage.texts.get(3).getText(), texts.fourth.value);
+
+        Assert.assertEquals(work.homePage.mainText.getText(), texts.weird.value);
+        Assert.assertEquals(work.homePage.mainTitle.getText(), texts.framework.value);
 
 
     }
