@@ -23,9 +23,12 @@ public class EpamTest3 {
 
         //logging in
         dp.profilePhoto.click();
+        // TODO what the point of PO in case if you use low-level operations ?
+        // TODO login should be performed as business action on PO class !
         dp.login.sendKeys("epam");
         dp.password.sendKeys("1234");
         dp.submit.click();
+        // !TODO
         //checking username
         dp.profilePhoto.shouldHave(text(epam.HOME_PAGE_DATA.USERNAME.value));
 
@@ -62,6 +65,8 @@ public class EpamTest3 {
 
 
         //selecting Water, Wind, Selen and Yellow
+        // TODO actually, PO should have a business action for this purpose...
+        // TODO how can i realize that "water" presented via dp.checkbox.get(0) ?
         dp.checkbox.get(0).click();
         dp.checkbox.get(2).click();
 

@@ -1,5 +1,6 @@
-package epam;
+package epam; // TODO wrong package name
 
+// TODO enums should me named as FIRST_SECOND instead of FIRSTSECOND
 public enum HOME_PAGE_DATA {
     URL("https://jdi-framework.github.io/tests/index.htm"),
     LINKINDEX("Index Page"),
