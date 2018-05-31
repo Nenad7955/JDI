@@ -24,12 +24,15 @@ public class EpamTest {
         // on my idea i didn't get a warning?
 
         //checking user after logging in
+        // TODO im pretty sure that you have warning here ! You have to use different Assertion method... #1
         Assert.assertTrue(work.driver.findElements(By.xpath("//li/a/div/span")).size() == 1);
         Assert.assertEquals(epam.HOME_PAGE_DATA.USERNAME.value, work.driver.findElement(By.xpath("//li/a/div/span")).getText());
 
 
         //checking number of pictures and texts
+        // TODO #2
         Assert.assertTrue(work.driver.findElements(By.xpath("//div[@class='col-sm-3']")).size() == 4);
+        // TODO #3
         Assert.assertTrue(work.driver.findElements(By.xpath("//span[@class='benefit-txt']")).size() == 4);
 
         //checking if all 4 texts match

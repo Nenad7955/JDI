@@ -9,8 +9,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.concurrent.TimeUnit;
 
-// TODO this code do not match with code convention !
-// TODO same problem with tests count
 public class EpamTest2 {
 
     private WebDriver driver;
@@ -42,6 +40,7 @@ public class EpamTest2 {
         //checking number of pictures
         Assert.assertEquals(work.homePage.images.size(), 4);
         //checking if all 4 pictures are dispayed
+        // TODO loop required
         Assert.assertTrue(work.homePage.images.get(0).isDisplayed());
         Assert.assertTrue(work.homePage.images.get(1).isDisplayed());
         Assert.assertTrue(work.homePage.images.get(2).isDisplayed());
@@ -49,6 +48,7 @@ public class EpamTest2 {
         //checking number of texts
         Assert.assertEquals(work.homePage.images.size(), 4);
         //comparing all 4 texts
+        // TODO loop required
         Assert.assertEquals(work.homePage.texts.get(0).getText(), epam.HOME_PAGE_DATA.FIRSTTEXT.value);
         Assert.assertEquals(work.homePage.texts.get(1).getText(), epam.HOME_PAGE_DATA.SECONDTEXT.value);
         Assert.assertEquals(work.homePage.texts.get(2).getText(), epam.HOME_PAGE_DATA.THIRDTEXT.value);
