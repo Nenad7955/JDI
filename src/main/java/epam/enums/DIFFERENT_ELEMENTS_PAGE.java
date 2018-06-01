@@ -1,10 +1,10 @@
-package epam;
+package epam.enums;
 
 public enum DIFFERENT_ELEMENTS_PAGE {
 
     ACCCAT("Acccat", new String[]{"acccatid"}, "acccatText", "dlg7Matchcode", "Zutritts\nkategorie", "Text");
 
-    String[] optionsArray = new String[]{
+    public String[] optionsArray = new String[]{
             "Service",
             "Support",
             "Dates",
@@ -14,35 +14,35 @@ public enum DIFFERENT_ELEMENTS_PAGE {
             "Different elements"
     };
 
-    String[] elementArray = new String[]{
+    public String[] elementArray = new String[]{
             "Water",
             "Earth",
             "Wind",
             "Fire"
     };
 
-    String[] materialArray = new String[]{
+    public String[] materialArray = new String[]{
             "Gold",
             "Silver",
             "Bronze",
             "Selen"
     };
 
-    String[] colorsArray = new String[]{
+    public String[] colorsArray = new String[]{
             "Red",
             "Green",
             "Blue",
             "Yellow"
     };
 
-    String[] logsChecked = new String[]{
+    public String[] logsChecked = new String[]{
             "Water: condition changed to true",
             "Wind: condition changed to true",
             "metal: value changed to Selen",
             "Colors: value changed to Yellow"
     };
 
-    String[] logsUnchecked = new String[]{
+    public String[] logsUnchecked = new String[]{
             "Wind: condition changed to false",
             "Water: condition changed to false"
     };

@@ -1,7 +1,5 @@
 package epam;
 
-import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.Selenide;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

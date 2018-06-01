@@ -8,11 +8,10 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 
-import javax.security.auth.login.Configuration;
 import java.util.concurrent.TimeUnit;
 
 
-public class work {
+public class EpamWebsite {
 
     public static ChromeDriver driver;
     public static HomePage homePage;

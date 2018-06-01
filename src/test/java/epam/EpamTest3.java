@@ -6,7 +6,7 @@ import org.junit.Test;
 import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.Condition.text;
 
-
+// i hope i understood the PO part correctly?
 public class EpamTest3 {
 
     static DifferentElementsPage dp;
@@ -22,12 +22,9 @@ public class EpamTest3 {
     public void test() {
 
         //logging in
-        dp.profilePhoto.click();
-        dp.login.sendKeys("epam");
-        dp.password.sendKeys("1234");
-        dp.submit.click();
+        dp.logIn("epam","1234");
         //checking username
-        dp.profilePhoto.shouldHave(text(epam.HOME_PAGE_DATA.USERNAME.value));
+        dp.profilePhoto.shouldHave(text(epam.enums.HOME_PAGE_DATA.USERNAME.value));
 
         //checking number of texts and pictures
         dp.images.shouldHave(size(4));
@@ -35,13 +32,13 @@ public class EpamTest3 {
 
         dp.subServices.click();
         //checking service subcategory
-        for (int i = 0; i < epam.DIFFERENT_ELEMENTS_PAGE.ACCCAT.optionsArray.length; i++)
-            dp.subServices.shouldHave(text(epam.DIFFERENT_ELEMENTS_PAGE.ACCCAT.optionsArray[i]));
+        for (int i = 0; i < epam.enums.DIFFERENT_ELEMENTS_PAGE.ACCCAT.optionsArray.length; i++)
+            dp.subServices.shouldHave(text(epam.enums.DIFFERENT_ELEMENTS_PAGE.ACCCAT.optionsArray[i]));
 
         dp.hdrServices.click();
         //checking service header
-        for (int i = 0; i < epam.DIFFERENT_ELEMENTS_PAGE.ACCCAT.optionsArray.length; i++)
-            dp.hdrServices.shouldHave(text(epam.DIFFERENT_ELEMENTS_PAGE.ACCCAT.optionsArray[i]));
+        for (int i = 0; i < epam.enums.DIFFERENT_ELEMENTS_PAGE.ACCCAT.optionsArray.length; i++)
+            dp.hdrServices.shouldHave(text(epam.enums.DIFFERENT_ELEMENTS_PAGE.ACCCAT.optionsArray[i]));
 
         //opening Different Elements page and checking for existence of elements and comparing values
 
@@ -51,34 +48,34 @@ public class EpamTest3 {
         dp.radiobox.shouldHave(size(4));
         dp.colors.shouldHave(size(1));
 
-        for (int i = 0; i < epam.DIFFERENT_ELEMENTS_PAGE.ACCCAT.elementArray.length; i++)
-            dp.checkbox.get(i).shouldHave(text(epam.DIFFERENT_ELEMENTS_PAGE.ACCCAT.elementArray[i]));
+        for (int i = 0; i < epam.enums.DIFFERENT_ELEMENTS_PAGE.ACCCAT.elementArray.length; i++)
+            dp.checkbox.get(i).shouldHave(text(epam.enums.DIFFERENT_ELEMENTS_PAGE.ACCCAT.elementArray[i]));
 
-        for (int i = 0; i < epam.DIFFERENT_ELEMENTS_PAGE.ACCCAT.materialArray.length; i++)
-            dp.radiobox.get(i).shouldHave(text(epam.DIFFERENT_ELEMENTS_PAGE.ACCCAT.materialArray[i]));
+        for (int i = 0; i < epam.enums.DIFFERENT_ELEMENTS_PAGE.ACCCAT.materialArray.length; i++)
+            dp.radiobox.get(i).shouldHave(text(epam.enums.DIFFERENT_ELEMENTS_PAGE.ACCCAT.materialArray[i]));
 
-        for (int i = 0; i < epam.DIFFERENT_ELEMENTS_PAGE.ACCCAT.colorsArray.length; i++)
-            dp.colors.get(0).shouldHave(text(epam.DIFFERENT_ELEMENTS_PAGE.ACCCAT.colorsArray[i]));
+        for (int i = 0; i < epam.enums.DIFFERENT_ELEMENTS_PAGE.ACCCAT.colorsArray.length; i++)
+            dp.colors.get(0).shouldHave(text(epam.enums.DIFFERENT_ELEMENTS_PAGE.ACCCAT.colorsArray[i]));
 
 
         //selecting Water, Wind, Selen and Yellow
-        dp.checkbox.get(0).click();
-        dp.checkbox.get(2).click();
+        dp.select("Water");
+        dp.select("Wind");
 
-        dp.radiobox.get(3).click();
+        dp.select("Selen");
 
-        dp.yellow.click();
+        dp.select("Yellow");
 
         //checking in logs
-        for (int i = 0; i < epam.DIFFERENT_ELEMENTS_PAGE.ACCCAT.logsChecked.length; i++)
-            dp.logs.get(0).shouldHave(text(epam.DIFFERENT_ELEMENTS_PAGE.ACCCAT.logsChecked[i]));
+        for (int i = 0; i < epam.enums.DIFFERENT_ELEMENTS_PAGE.ACCCAT.logsChecked.length; i++)
+            dp.logs.get(0).shouldHave(text(epam.enums.DIFFERENT_ELEMENTS_PAGE.ACCCAT.logsChecked[i]));
 
         //unselecting Water and Wind
-        dp.checkbox.get(0).click();
-        dp.checkbox.get(2).click();
+        dp.select("Water");
+        dp.select("Wind");
 
         //checking in logs
-        for (int i = 0; i < epam.DIFFERENT_ELEMENTS_PAGE.ACCCAT.logsUnchecked.length; i++)
-            dp.logs.get(0).shouldHave(text(epam.DIFFERENT_ELEMENTS_PAGE.ACCCAT.logsUnchecked[i]));
+        for (int i = 0; i < epam.enums.DIFFERENT_ELEMENTS_PAGE.ACCCAT.logsUnchecked.length; i++)
+            dp.logs.get(0).shouldHave(text(epam.enums.DIFFERENT_ELEMENTS_PAGE.ACCCAT.logsUnchecked[i]));
     }
 }

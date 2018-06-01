@@ -1,8 +1,7 @@
 package epam;
 
-import com.codeborne.selenide.Configuration;
+
 import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.SelenideElement;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -24,12 +23,9 @@ public class EpamTest3_1 {
     @Test
     public void test() {
 
-        dp.profilePhoto.click();
-        dp.login.sendKeys("epam");
-        dp.password.sendKeys("1234");
-        dp.submit.click();
+        dp.logIn("epam", "1234");
         //checking username
-        dp.profilePhoto.shouldHave(text(epam.HOME_PAGE_DATA.USERNAME.value));
+        dp.profilePhoto.shouldHave(text(epam.enums.HOME_PAGE_DATA.USERNAME.value));
 
         dp.hdrServices.click();
         dp.datesPageButton.click();
@@ -76,10 +72,10 @@ public class EpamTest3_1 {
 
         /* Old Method... i still like it more! more then PO
         $(".profile-photo").click();
-        $("#Login").sendKeys(epam.HOME_PAGE_DATA.ID.value);
-        $("#Password").sendKeys((epam.HOME_PAGE_DATA.PASSWORD.value));
+        $("#Login").sendKeys(epam.enums.HOME_PAGE_DATA.ID.value);
+        $("#Password").sendKeys((epam.enums.HOME_PAGE_DATA.PASSWORD.value));
         $(".btn-login").click();
-        $("div.profile-photo").shouldHave(text(epam.HOME_PAGE_DATA.USERNAME.value));
+        $("div.profile-photo").shouldHave(text(epam.enums.HOME_PAGE_DATA.USERNAME.value));
         $("li.sub-menu").click();
         //clicking on Dates(through xpath) through left menu
         $("ul.sub").$x("//*[@id='mCSB_1_container']/ul/li[3]/ul/li[2]/a/p/span").click();

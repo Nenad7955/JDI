@@ -3,7 +3,12 @@ package epam;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import org.junit.Assert;
 import org.openqa.selenium.support.FindBy;
+
+import javax.swing.*;
+
+import static com.codeborne.selenide.Condition.text;
 
 public class DifferentElementsPage {
 
@@ -62,6 +67,34 @@ public class DifferentElementsPage {
     public DifferentElementsPage() {
         Selenide.page(this);
         Selenide.open("https://jdi-framework.github.io/tests/index.htm");
+    }
+
+    void logIn(String ID, String password) {
+        this.profilePhoto.click();
+        this.login.sendKeys(ID);
+        this.password.sendKeys(password);
+        this.submit.click();
+    }
+
+    void select(String value) {
+        for (int i = 0; i < checkbox.size(); i++) {
+            if (checkbox.get(i).getText().contains(value)) {
+                checkbox.get(i).click();
+                return;
+            }
+        }
+        for (int i = 0; i < radiobox.size(); i++) {
+            if (radiobox.get(i).getText().contains(value)) {
+                radiobox.get(i).click();
+                return;
+            }
+        }
+        if (value == "Yellow") {
+            yellow.click();
+            return;
+        }
+        JOptionPane.showMessageDialog(null, value + ": No such element! ");
+
     }
 
 }

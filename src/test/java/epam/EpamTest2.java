@@ -1,5 +1,6 @@
 package epam;
 
+import epam.enums.HOME_PAGE_DATA;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -14,6 +15,13 @@ import java.util.concurrent.TimeUnit;
 public class EpamTest2 {
 
     private WebDriver driver;
+    String[] TEXTS = new String[]{
+            HOME_PAGE_DATA.FIRST_TEXT.value,
+            HOME_PAGE_DATA.SECOND_TEXT.value,
+            HOME_PAGE_DATA.THIRD_TEXT.value,
+            HOME_PAGE_DATA.FOURTH_TEXT.value
+    };
+
 
     @Before
     public void before() {
@@ -21,41 +29,40 @@ public class EpamTest2 {
         this.driver = new ChromeDriver();
         this.driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         this.driver.manage().window().maximize();
-        driver.navigate().to(epam.HOME_PAGE_DATA.URL.value);
-        work.initHP(this.driver);
-        work.homePage.login(epam.HOME_PAGE_DATA.ID.value, epam.HOME_PAGE_DATA.PASSWORD.value);
+        driver.navigate().to(epam.enums.HOME_PAGE_DATA.URL.value);
+        EpamWebsite.initHP(this.driver);
+        EpamWebsite.homePage.login(epam.enums.HOME_PAGE_DATA.ID.value, epam.enums.HOME_PAGE_DATA.PASSWORD.value);
     }
 
     @After
     public void after() {
-        work.homePage.driver.close();
+        EpamWebsite.homePage.driver.close();
     }
 
     @Test
     public void test() {
         //checking if URL is correct
-        Assert.assertEquals(work.homePage.driver.getCurrentUrl(), epam.HOME_PAGE_DATA.URL.value);
+        Assert.assertEquals(EpamWebsite.homePage.driver.getCurrentUrl(), epam.enums.HOME_PAGE_DATA.URL.value);
         //checking username
-        Assert.assertEquals(work.homePage.profilePhoto.getAttribute("innerText"), " " + epam.HOME_PAGE_DATA.USERNAME.value);
+        Assert.assertEquals(EpamWebsite.homePage.profilePhoto.getAttribute("innerText"), " " + epam.enums.HOME_PAGE_DATA.USERNAME.value);
         //checking title / index
-        Assert.assertEquals(work.homePage.driver.getTitle(), epam.HOME_PAGE_DATA.LINKINDEX.value);
+        Assert.assertEquals(EpamWebsite.homePage.driver.getTitle(), epam.enums.HOME_PAGE_DATA.LINK_INDEX.value);
         //checking number of pictures
-        Assert.assertEquals(work.homePage.images.size(), 4);
+        Assert.assertEquals(EpamWebsite.homePage.images.size(), 4);
         //checking if all 4 pictures are dispayed
-        Assert.assertTrue(work.homePage.images.get(0).isDisplayed());
-        Assert.assertTrue(work.homePage.images.get(1).isDisplayed());
-        Assert.assertTrue(work.homePage.images.get(2).isDisplayed());
-        Assert.assertTrue(work.homePage.images.get(3).isDisplayed());
+        for (int i = 0; i < 4; i++)
+            Assert.assertTrue(EpamWebsite.homePage.images.get(i).isDisplayed());
+
         //checking number of texts
-        Assert.assertEquals(work.homePage.images.size(), 4);
+        Assert.assertEquals(EpamWebsite.homePage.images.size(), 4);
         //comparing all 4 texts
-        Assert.assertEquals(work.homePage.texts.get(0).getText(), epam.HOME_PAGE_DATA.FIRSTTEXT.value);
-        Assert.assertEquals(work.homePage.texts.get(1).getText(), epam.HOME_PAGE_DATA.SECONDTEXT.value);
-        Assert.assertEquals(work.homePage.texts.get(2).getText(), epam.HOME_PAGE_DATA.THIRDTEXT.value);
-        Assert.assertEquals(work.homePage.texts.get(3).getText(), epam.HOME_PAGE_DATA.FOURTHTEXT.value);
+        for (int i = 0; i < 4; i++)
+            Assert.assertEquals(EpamWebsite.homePage.texts.get(i).getText(), TEXTS[i]);
+
+
         //checking header and the weird long text
-        Assert.assertEquals(work.homePage.mainText.getText(), epam.HOME_PAGE_DATA.WEIRD.value);
-        Assert.assertEquals(work.homePage.mainTitle.getText(), epam.HOME_PAGE_DATA.FRAMEWORK.value);
+        Assert.assertEquals(EpamWebsite.homePage.mainText.getText(), epam.enums.HOME_PAGE_DATA.WEIRD.value);
+        Assert.assertEquals(EpamWebsite.homePage.mainTitle.getText(), epam.enums.HOME_PAGE_DATA.FRAMEWORK.value);
 
 
     }
